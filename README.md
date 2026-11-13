@@ -17,7 +17,7 @@ API key Anthropic.
 Mở **PowerShell** (bấm Start, gõ "PowerShell") và chạy:
 
 ```powershell
-winget install -e --id Git.Git --accept-package-agreements --accept-source-agreements
+winget install --source winget -e --id Git.Git --accept-package-agreements --accept-source-agreements
 irm https://claude.ai/install.ps1 | iex
 ```
 
@@ -96,7 +96,7 @@ bao giờ bị cập nhật ghi đè. Sao lưu: chép 3 mục đó.
 ## Dành cho người phát triển: đóng gói & phát hành
 
 ```powershell
-winget install -e --id GitHub.cli; gh auth login          # một lần
+winget install --source winget -e --id GitHub.cli; gh auth login          # một lần
 python tools\release.py --create-repo                     # một lần: tạo repo công khai video-studio-releases
 python tools\package.py                                   # thử đóng gói: dist\video-studio-<ver>.zip + dist\VideoStudio.exe
 python tests\smoke_test.py                                # phải 0 FAIL trước khi phát hành
@@ -113,7 +113,7 @@ Mọi máy đang dùng sẽ tự nhận bản mới ở lần mở app kế ti�
 | `python` / `node` / `ffmpeg` "not recognized" ngay sau khi cài | Mở PowerShell mới (Windows cần nạp PATH mới) rồi chạy lại lệnh |
 | Cài MiKTeX xong nhưng `xelatex` không thấy | `$env:Path += ";$env:LOCALAPPDATA\Programs\MiKTeX\miktex\bin\x64"` rồi chạy lại |
 | LaTeX lỗi thiếu gói khi dựng video | `initexmf --set-config-value=[MPM]AutoInstall=1` rồi `VideoStudio.exe --doctor --warmup` |
-| Cảnh 3D báo không thấy Chrome/Edge | Cài Chrome: `winget install -e --id Google.Chrome`, hoặc đặt biến `CHROME_PATH` |
+| Cảnh 3D báo không thấy Chrome/Edge | Cài Chrome: `winget install --source winget -e --id Google.Chrome`, hoặc đặt biến `CHROME_PATH` |
 | Edge TTS lỗi 403 / No audio | `python -m pip install -U edge-tts` |
 | App không mở / báo lỗi | Xem nhật ký `%LOCALAPPDATA%\VideoStudio\logs\server.log` |
 | Cổng 8765 bị dùng | Đóng cửa sổ Video Studio cũ, hoặc `$env:PORT=9000; python server.py` |
