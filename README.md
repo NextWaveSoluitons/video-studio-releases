@@ -1,7 +1,11 @@
 # Cài Video Studio trên máy Windows mới
 
-Cài **một lần** (Claude Code tự làm theo file này, khoảng 15–25 phút). Sau đó chỉ cần bấm đúp **Video Studio**
-trên Desktop: app tự kiểm tra và cài bản mới mỗi lần mở, không phải cài gì thêm.
+Cài **một lần** (Claude Code tự làm theo file này, khoảng 15–25 phút). Sau đó chỉ cần mở **Video Studio** từ menu
+Start / Desktop: app tự kiểm tra và cài bản mới mỗi lần mở, không phải cài gì thêm.
+
+> Không dùng Claude Code? Tải [VideoStudio.exe](https://github.com/NextWaveSoluitons/video-studio-releases/releases/latest/download/VideoStudio.exe)
+> rồi bấm đúp: trình cài đặt hiện ra → bấm **Cài đặt** → xong bấm **Mở Video Studio**. App được thêm vào menu Start,
+> Desktop và Control Panel → Programs (gỡ cài đặt ở đó).
 
 Yêu cầu: Windows 10/11 có mạng, có `winget` (App Installer — có sẵn trên Windows 11), tài khoản Claude Pro/Max hoặc
 API key Anthropic.
@@ -44,7 +48,7 @@ $exe = "$env:USERPROFILE\Downloads\VideoStudio.exe"
 Invoke-WebRequest "https://github.com/NextWaveSoluitons/video-studio-releases/releases/latest/download/VideoStudio.exe" -OutFile $exe
 
 # 2. Cài: giải nén app vào %LOCALAPPDATA%\VideoStudio + cài Git, Python 3.12, ffmpeg, Node.js LTS, MiKTeX,
-#    Claude Code, thư viện Python, thư viện 3D (Three.js), dữ liệu ban đầu, lối tắt Desktop. Không hỏi gì.
+#    Claude Code, thư viện Python, thư viện 3D (Three.js), dữ liệu ban đầu, lối tắt Start + Desktop, mục gỡ cài đặt trong Control Panel. Không hỏi gì.
 & $exe --install --yes | Out-Host      # "| Out-Host" để PowerShell chờ exe (ứng dụng cửa sổ) chạy xong
 
 # 3. Kiểm tra máy + biên dịch thử LaTeX (MiKTeX tải sẵn gói, lần đầu vài phút)
@@ -78,7 +82,8 @@ claude auth login
 
 | Việc | Lệnh / thao tác |
 |---|---|
-| Mở app | Bấm đúp **Video Studio** trên Desktop: mở cửa sổ app riêng (không có cmd, không cần trình duyệt), tự cập nhật trước khi mở. Đóng cửa sổ là tắt app |
+| Mở app | **Video Studio** trong menu Start hoặc trên Desktop: cửa sổ app riêng (không có cmd, không cần trình duyệt), tự cập nhật trước khi mở. Đóng cửa sổ là tắt app. Ghim thanh tác vụ: khi app đang mở, chuột phải biểu tượng → *Pin to taskbar* |
+| Gỡ cài đặt | **Control Panel → Programs and Features → Video Studio → Uninstall** (hoặc Settings → Apps). Hỏi có giữ video/dữ liệu không; Python, Node.js, MiKTeX… được giữ lại |
 | Cập nhật thủ công | Trong app: **Cài đặt → Phiên bản & cập nhật**, hoặc `python updater.py` (cách B: `update.bat`) |
 | Kiểm tra máy | `VideoStudio.exe --doctor --fix` hoặc `doctor.bat` |
 | Xem phiên bản | `VideoStudio.exe --version` |
